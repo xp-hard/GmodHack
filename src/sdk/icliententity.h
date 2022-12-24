@@ -8,5 +8,5 @@
 class IClientEntity
 {
 public:
-	NETVAR(m_iHealth, "CBasePlayer->m_iHealth", int32_t);
+	NETVAR(m_iHealth, "CBaseEntity->m_iHealth", int32_t);
 };

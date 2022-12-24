@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <unordered_map>
+#include <map>
 #include <format>
 
 enum class SendPropType : int
@@ -76,22 +77,41 @@ class ClientClass
 public:
 	void*		m_pCreateFn;
 	void*			m_pCreateEventFn;	// Only called for event objects.
-	const char* m_pNetworkName;
+	char* m_pNetworkName;
 	RecvTable* m_pRecvTable;
 	ClientClass* m_pNext;
 	int						m_ClassID;	// Managed by the engine.
+	const char* mapClassname;
 };
 
-std::unordered_map<const char*, intptr_t> netvars;
+std::map<const char*, intptr_t> netvars;
+
+class IBaseClientDll {
+private:
+	virtual void fn0() = 0;
+	virtual void fn1() = 0;
+	virtual void fn2() = 0;
+	virtual void fn3() = 0;
+	virtual void fn4() = 0;
+	virtual void fn5() = 0;
+	virtual void fn6() = 0;
+	virtual void fn7() = 0;
+
+public:
+	virtual ClientClass* GetAllClasses(void) = 0;
+};
+
 
 void Dump(const char* baseClass, RecvTable* table, intptr_t offset = 0);
 
-void SetupNetvars(ClientClass* clientClass) {
-	for (auto node = clientClass; node; node = node->m_pNext) {
+void SetupNetvars(IBaseClientDll *client) {
+	for (auto node = client->GetAllClasses(); node; node = node->m_pNext) {
 		if (node->m_pRecvTable) {
 			Dump(node->m_pNetworkName, node->m_pRecvTable, 0);
 		}
 	}
+
+	123;
 }
 
 void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
@@ -107,6 +127,7 @@ void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 		}
 
 		if (
+			prop->m_RecvType == SendPropType::DATATABLE &&
 			prop->m_pDataTable &&
 			prop->m_pDataTable->m_pNetTableName[0] == 'D'
 		) {
@@ -115,6 +136,7 @@ void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 		}
 
 		const auto netvarName = std::format("{}->{}", baseClass, prop->m_pVarName);
+
 		netvars[netvarName.c_str()] = offset + prop->m_Offset;
 	}
 }
@@ -122,22 +144,7 @@ void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 #define NETVAR(func_name, netvar, type) type& func_name()\
 {\
 	static auto offset = netvars[netvar];\
-	return *reinterpret_cast<type*>(intptr_t(this) + offset);\
+	return *reinterpret_cast<type*>(uintptr_t(this) + offset);\
 }
-
-class IBaseClientDll {
-private:
-	virtual void fn0() = 0;
-	virtual void fn1() = 0;
-	virtual void fn2() = 0;
-	virtual void fn3() = 0;
-	virtual void fn4() = 0;
-	virtual void fn5() = 0;
-	virtual void fn6() = 0;
-	virtual void fn7() = 0;
-
-public:
-	virtual ClientClass* GetAllClasses() = 0;
-};
 
 #define CLIENT_DLL_INTERFACE_VERSION		"VClient017"

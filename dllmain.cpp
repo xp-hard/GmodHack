@@ -46,7 +46,11 @@ void HackThread(HMODULE module) {
 
 	auto clientClass = client->GetAllClasses();
 
-	SetupNetvars(clientClass);
+	SetupNetvars(client);
+
+	for (auto& [k, v] : netvars) {
+		std::cout << k << "\n";
+	}
 
 	// Main loop
 	while (!GetAsyncKeyState(VK_END)) {
