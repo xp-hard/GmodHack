@@ -1,5 +1,5 @@
 #pragma once
 
 namespace toggles {
-	bool chams = false;
+	inline bool chams = false;
 };

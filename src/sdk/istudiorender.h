@@ -9,7 +9,7 @@
 struct studiohdr_t;
 struct studiomeshdata_t;
 class Vector;
-struct LightDesc_t;
+//struct LightDesc_t;
 class IMaterial;
 struct studiohwdata_t;
 struct Ray_t;
