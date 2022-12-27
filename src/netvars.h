@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <unordered_map>
 #include <map>
+#include <string>
 #include <format>
 
 enum class SendPropType : int
@@ -84,7 +85,7 @@ public:
 	const char* mapClassname;
 };
 
-std::map<const char*, intptr_t> netvars;
+std::map<std::string, intptr_t> netvars;
 
 class IBaseClientDll {
 private:
@@ -137,7 +138,7 @@ void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 
 		const auto netvarName = std::format("{}->{}", baseClass, prop->m_pVarName);
 
-		netvars[netvarName.c_str()] = offset + prop->m_Offset;
+		netvars[netvarName] = offset + prop->m_Offset;
 	}
 }
 

@@ -2,6 +2,7 @@
 #include <thread>
 #include <stdexcept>
 #include "src/interfaces.h"
+#include "src/hooks.h"
 #include <iostream>
 
 // Get pointer to the interface
@@ -44,16 +45,24 @@ void HackThread(HMODULE module) {
 		throw std::runtime_error("Failed to grab IClientEntityList ptr!");
 	}
 
+	gui::Setup();
+	hooks::Setup();
+
 	auto clientClass = client->GetAllClasses();
 
 	SetupNetvars(client);
 
-	for (auto& [k, v] : netvars) {
-		std::cout << k << "\n";
-	}
+	// shit output insted of normal
+	//for (auto& [k, v] : netvars) {
+		//std::cout << k << "\n";
+	//}
 
 	// Main loop
 	while (!GetAsyncKeyState(VK_END)) {
+
+		if (GetAsyncKeyState(VK_INSERT) & 1) {
+			gui::open = !gui::open;
+		}
 
 		for (int i = 0; i < entityList->NumberOfEntities(true); ++i) {
 			auto ent = entityList->GetClientEntity(i);
