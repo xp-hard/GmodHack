@@ -159,6 +159,7 @@
     <ClCompile Include="ext\minhook\src\trampoline.c" />
     <ClCompile Include="src\gui\gui.cpp" />
     <ClCompile Include="src\hooks.cpp" />
+    <ClCompile Include="src\interfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\imgui\backends\imgui_impl_dx9.h" />
@@ -183,13 +184,18 @@
     <ClInclude Include="src\hooks.h" />
     <ClInclude Include="src\interfaces.h" />
     <ClInclude Include="src\netvars.h" />
+    <ClInclude Include="src\sdk\cmatrix.h" />
     <ClInclude Include="src\sdk\cusercmd.h" />
     <ClInclude Include="src\sdk\cvector.h" />
     <ClInclude Include="src\sdk\iappsystem.h" />
+    <ClInclude Include="src\sdk\ibaseclientdll.h" />
     <ClInclude Include="src\sdk\iclient.h" />
     <ClInclude Include="src\sdk\icliententity.h" />
     <ClInclude Include="src\sdk\icliententitylist.h" />
     <ClInclude Include="src\sdk\iclientmodeshared.h" />
+    <ClInclude Include="src\sdk\iclientrenderable.h" />
+    <ClInclude Include="src\sdk\iclientunknown.h" />
+    <ClInclude Include="src\sdk\ihandleentity.h" />
     <ClInclude Include="src\sdk\imaterial.h" />
     <ClInclude Include="src\sdk\imaterialsystem.h" />
     <ClInclude Include="src\sdk\istudiorender.h" />

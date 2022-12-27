@@ -34,6 +34,9 @@
     <Filter Include="features">
       <UniqueIdentifier>{da76ce6b-6d8c-4995-9038-5849cd35b4c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utl">
+      <UniqueIdentifier>{5fa773ff-4a6d-4564-a51f-f29dc571b3a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -79,6 +82,9 @@
       <Filter>gui</Filter>
     </ClCompile>
     <ClCompile Include="src\hooks.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interfaces.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -177,6 +183,21 @@
       <Filter>sdk</Filter>
     </ClInclude>
     <ClInclude Include="src\sdk\imaterial.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cmatrix.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\ibaseclientdll.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\iclientrenderable.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\iclientunknown.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\ihandleentity.h">
       <Filter>sdk</Filter>
     </ClInclude>
   </ItemGroup>

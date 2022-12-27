@@ -16,7 +16,7 @@ void hooks::Setup() {
 		&EndScence,
 		reinterpret_cast<void**>(&EndScenceOriginal)
 	)) {
-		throw "Unable to hook EndScence()!";
+		throw std::runtime_error("Unable to hook EndScence()!");
 	}
 
 	if (MH_CreateHook(
@@ -24,7 +24,23 @@ void hooks::Setup() {
 		&EndScence,
 		reinterpret_cast<void**>(&ResetOriginal)
 	)) {
-		throw "Unable to hook Reset()!";
+		throw std::runtime_error("Unable to hook Reset()!");
+	}
+
+	if (MH_CreateHook(
+		VirtualFunction(interfaces::studioRender, 29),
+		&DrawModel,
+		reinterpret_cast<void**>(&DrawModelOriginal)
+	)) {
+		throw std::runtime_error("Unable to hook DrawModel()");
+	}
+
+	if (MH_CreateHook(
+		VirtualFunction(interfaces::clientMode, 24),
+		&CreateMove,
+		reinterpret_cast<void**>(&CreateMoveOriginal)
+	)) {
+		throw std::runtime_error("Unable to hook CreateMove()");
 	}
 
 	if (MH_EnableHook(MH_ALL_HOOKS)) {

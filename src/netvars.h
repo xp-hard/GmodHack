@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <format>
+#include "interfaces.h"
 
 enum class SendPropType : int
 {
@@ -73,39 +74,13 @@ public:
 	bool			m_bInMainList;
 };
 
-class ClientClass
-{
-public:
-	void*		m_pCreateFn;
-	void*			m_pCreateEventFn;	// Only called for event objects.
-	char* m_pNetworkName;
-	RecvTable* m_pRecvTable;
-	ClientClass* m_pNext;
-	int						m_ClassID;	// Managed by the engine.
-	const char* mapClassname;
-};
-
 inline std::map<std::string, intptr_t> netvars;
-
-class IBaseClientDll {
-private:
-	virtual void fn0() = 0;
-	virtual void fn1() = 0;
-	virtual void fn2() = 0;
-	virtual void fn3() = 0;
-	virtual void fn4() = 0;
-	virtual void fn5() = 0;
-	virtual void fn6() = 0;
-	virtual void fn7() = 0;
-
-public:
-	virtual ClientClass* GetAllClasses(void) = 0;
-};
-
 
 void Dump(const char* baseClass, RecvTable* table, intptr_t offset = 0);
 
-inline void SetupNetvars(IBaseClientDll *client) {
+using namespace interfaces;
+
+inline void SetupNetvars() {
 	for (auto node = client->GetAllClasses(); node; node = node->m_pNext) {
 		if (node->m_pRecvTable) {
 			Dump(node->m_pNetworkName, node->m_pRecvTable, 0);
@@ -145,5 +120,3 @@ inline void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 	static auto offset = netvars[netvar];\
 	return *reinterpret_cast<type*>(uintptr_t(this) + offset);\
 }
-
-#define CLIENT_DLL_INTERFACE_VERSION		"VClient017"

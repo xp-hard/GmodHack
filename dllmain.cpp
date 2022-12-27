@@ -34,23 +34,14 @@ void HackThread(HMODULE module) {
 
 	freopen_s(&file, "CONOUT$", "w", stdout);
 
-	auto client = GetInterface<IBaseClientDll>(CLIENT_DLL_INTERFACE_VERSION, "client.dll");
-	auto entityList = GetInterface<IClientEntityList>(VCLIENTENTITYLIST_INTERFACE_VERSION, "client.dll");
-
-	if (!client) {
-		throw std::runtime_error("Failed to grab IBaseClientDll ptr!");
-	}
-
-	if (!entityList) {
-		throw std::runtime_error("Failed to grab IClientEntityList ptr!");
-	}
+	interfaces::Setup();
 
 	gui::Setup();
 	hooks::Setup();
 
-	auto clientClass = client->GetAllClasses();
+	auto clientClass = interfaces::client->GetAllClasses();
 
-	SetupNetvars(client);
+	SetupNetvars();
 
 	// shit output insted of normal
 	//for (auto& [k, v] : netvars) {
@@ -64,8 +55,8 @@ void HackThread(HMODULE module) {
 			gui::open = !gui::open;
 		}
 
-		for (int i = 0; i < entityList->NumberOfEntities(true); ++i) {
-			auto ent = entityList->GetClientEntity(i);
+		for (int i = 0; i < interfaces::entityList->NumberOfEntities(true); ++i) {
+			auto ent = interfaces::entityList->GetClientEntity(i);
 
 			if (!ent) continue;
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "imaterial.h"
+#include "iclientrenderable.h"
 
 #define STUDIO_RENDER_INTERFACE_VERSION "VStudioRender025"
 
@@ -161,7 +162,7 @@ struct DrawModelInfo_t
 	int				m_Skin;
 	int				m_Body;
 	int				m_HitboxSet;
-	void* m_pClientEntity;
+	IClientRenderable* m_pClientEntity;
 	int				m_Lod;
 	ColorMeshInfo_t* m_pColorMeshes;
 	bool			m_bStaticLighting;
