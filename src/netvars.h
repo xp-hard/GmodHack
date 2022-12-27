@@ -85,7 +85,7 @@ public:
 	const char* mapClassname;
 };
 
-std::map<std::string, intptr_t> netvars;
+inline std::map<std::string, intptr_t> netvars;
 
 class IBaseClientDll {
 private:
@@ -105,17 +105,15 @@ public:
 
 void Dump(const char* baseClass, RecvTable* table, intptr_t offset = 0);
 
-void SetupNetvars(IBaseClientDll *client) {
+inline void SetupNetvars(IBaseClientDll *client) {
 	for (auto node = client->GetAllClasses(); node; node = node->m_pNext) {
 		if (node->m_pRecvTable) {
 			Dump(node->m_pNetworkName, node->m_pRecvTable, 0);
 		}
 	}
-
-	123;
 }
 
-void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
+inline void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 	for (int i = 0; i < table->m_nProps; ++i) {
 		const auto prop = &table->m_pProps[i];
 
