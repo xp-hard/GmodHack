@@ -14,6 +14,9 @@
 #include "sdk/istudiorender.h"
 #include "sdk/iclientmodeshared.h"
 #include "sdk/ibaseclientdll.h"
+#include "sdk/iclientunknown.h"
+#include "sdk/iclientrenderable.h"
+#include "sdk/ihandleentity.h"
 
 namespace interfaces
 {
