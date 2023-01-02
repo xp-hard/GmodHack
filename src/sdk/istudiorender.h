@@ -128,6 +128,8 @@ enum
 	USESHADOWLOD = -2,
 };
 
+#define STUDIO_RENDER_INTERFACE_VERSION "VStudioRender025"
+
 // beyond this number of materials, you won't get info back from DrawModel
 #define MAX_DRAW_MODEL_INFO_MATERIALS 8
 

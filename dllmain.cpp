@@ -39,14 +39,7 @@ void HackThread(HMODULE module) {
 	gui::Setup();
 	hooks::Setup();
 
-	auto clientClass = interfaces::client->GetAllClasses();
-
 	SetupNetvars();
-
-	// shit output insted of normal
-	//for (auto& [k, v] : netvars) {
-		//std::cout << k << "\n";
-	//}
 
 	// Main loop
 	while (!GetAsyncKeyState(VK_END)) {
@@ -56,7 +49,7 @@ void HackThread(HMODULE module) {
 		}
 
 		for (int i = 0; i < interfaces::entityList->NumberOfEntities(true); ++i) {
-			auto ent = interfaces::entityList->GetClientEntity(i);
+			CBaseEntity* ent = interfaces::entityList->GetClientEntity(i);
 
 			if (!ent) continue;
 

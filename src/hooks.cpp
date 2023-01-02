@@ -5,6 +5,10 @@
 #include "../../ext/imgui/imgui.h"
 #include "../../ext/imgui/backends/imgui_impl_dx9.h"
 #include "../../ext/imgui/backends/imgui_impl_win32.h"
+#include "sdk/globals.h"
+#include "../utl/memory.h"
+
+#include "features/features.h"
 
 void hooks::Setup() {
 	if (MH_Initialize()) {
@@ -12,7 +16,7 @@ void hooks::Setup() {
 	}
 
 	if (MH_CreateHook(
-		VirtualFunction(gui::device, 42),
+		memory::Get(gui::device, 42),
 		&EndScence,
 		reinterpret_cast<void**>(&EndScenceOriginal)
 	)) {
@@ -20,7 +24,7 @@ void hooks::Setup() {
 	}
 
 	if (MH_CreateHook(
-		VirtualFunction(gui::device, 16),
+		memory::Get(gui::device, 16),
 		&EndScence,
 		reinterpret_cast<void**>(&ResetOriginal)
 	)) {
@@ -28,7 +32,7 @@ void hooks::Setup() {
 	}
 
 	if (MH_CreateHook(
-		VirtualFunction(interfaces::studioRender, 29),
+		memory::Get(interfaces::studioRender, 29),
 		&DrawModel,
 		reinterpret_cast<void**>(&DrawModelOriginal)
 	)) {
@@ -36,7 +40,7 @@ void hooks::Setup() {
 	}
 
 	if (MH_CreateHook(
-		VirtualFunction(interfaces::clientMode, 24),
+		memory::Get(interfaces::clientMode, 21),
 		&CreateMove,
 		reinterpret_cast<void**>(&CreateMoveOriginal)
 	)) {
@@ -78,5 +82,21 @@ HRESULT __stdcall hooks::Reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* 
 	ImGui_ImplDX9_InvalidateDeviceObjects();
 	const auto result = ResetOriginal(device, device, params);
 	ImGui_ImplDX9_CreateDeviceObjects();
+	return result;
+}
+
+bool hooks::CreateMove(float frameTime, CUserCmd* cmd) noexcept {
+	const bool result = hooks::CreateMoveOriginal(interfaces::clientMode, frameTime, cmd);
+
+	if (!cmd || !cmd->commandNumber) {
+		return result;
+	}
+
+	globals::UpdateLocalPlayer();
+
+	if (globals::localPlayer && globals::localPlayer->IsAlive()) {
+		features::RunBunnyHop(cmd);
+	}
+
 	return result;
 }

@@ -35,7 +35,7 @@ public:
 
 	// NOTE: This function is only a convenience wrapper.
 	// It returns GetClientNetworkable( entnum )->GetIClientEntity().
-	virtual IClientEntity*		GetClientEntity( int entnum ) = 0;
+	virtual CBaseEntity*		GetClientEntity( int entnum ) = 0;
 	virtual IClientEntity*		GetClientEntityFromHandle( CBaseHandle hEnt ) = 0;
 
 	// Returns number of entities currently in use
@@ -48,8 +48,6 @@ public:
 	virtual void				SetMaxEntities( int maxents ) = 0;
 	virtual int					GetMaxEntities( ) = 0;
 };
-
-extern IClientEntityList *entitylist;
 
 #define VCLIENTENTITYLIST_INTERFACE_VERSION	"VClientEntityList003"
 

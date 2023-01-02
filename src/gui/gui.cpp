@@ -258,6 +258,9 @@ void gui::Render() noexcept {
 
 			ImGui::EndTabItem();
 		}
+		if (ImGui::BeginTabItem("Misc")) {
+			ImGui::Checkbox("Bunny hop", &toggles::bhop);
+		}
 		ImGui::EndTabBar();
 	}
 

@@ -87,6 +87,21 @@
     <ClCompile Include="src\interfaces.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\netvars.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="utl\memory.cpp">
+      <Filter>utl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\chams.cpp">
+      <Filter>features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\bhop.cpp">
+      <Filter>features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdk\globals.cpp">
+      <Filter>sdk</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\netvars.h">
@@ -198,6 +213,27 @@
       <Filter>sdk</Filter>
     </ClInclude>
     <ClInclude Include="src\sdk\ihandleentity.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\ivengineclient.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="utl\memory.h">
+      <Filter>utl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\features\colors.h">
+      <Filter>features</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cbaseentity.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\features\features.h">
+      <Filter>features</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\globals.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\const.h">
       <Filter>sdk</Filter>
     </ClInclude>
   </ItemGroup>

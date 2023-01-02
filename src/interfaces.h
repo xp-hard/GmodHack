@@ -1,10 +1,10 @@
 #pragma once
 
-#include "netvars.h"
-
 #include "sdk/cusercmd.h"
 #include "sdk/cvector.h"
 #include "sdk/cmatrix.h"
+#include "sdk/cbaseentity.h"
+#include "sdk/const.h"
 
 #include "sdk/iclient.h"
 #include "sdk/icliententity.h"
@@ -17,6 +17,7 @@
 #include "sdk/iclientunknown.h"
 #include "sdk/iclientrenderable.h"
 #include "sdk/ihandleentity.h"
+#include "sdk/ivengineclient.h"
 
 namespace interfaces
 {
@@ -28,21 +29,21 @@ namespace interfaces
 	Interface* Capture(const char* moduleName, const char* interfaceName) noexcept;
 
 	// interface pointers
-	IBaseClientDll* client = nullptr;
-	IClientEntityList* entityList = nullptr;
-	IClientModeShared* clientMode = nullptr;
+	inline IBaseClientDll* client = nullptr;
+	inline IClientEntityList* entityList = nullptr;
+	inline IClientModeShared* clientMode = nullptr;
 	/*IEngineTrace* engineTrace = nullptr;
 	IEngineVGui* engineVGui = nullptr;
 	IGlobalVars* globals = nullptr;
 	IGlowManager* glow = nullptr;*/
-	IMaterialSystem* materialSystem = nullptr;
-	IStudioRender* studioRender = nullptr;
-	/*ISurface* surface = nullptr;
-	IVDebugOverlay* debugOverlay = nullptr;
-	IVEngineClient* engine = nullptr;
-	IVModelInfo* modelInfo = nullptr;
-	IVPanel* panel = nullptr;*/
+	inline IMaterialSystem* materialSystem = nullptr;
+	inline IStudioRender* studioRender = nullptr;
+	//ISurface* surface = nullptr;
+	//IVDebugOverlay* debugOverlay = nullptr;
+	inline IVEngineClient* engine = nullptr;
+	//IVModelInfo* modelInfo = nullptr;
+	//IVPanel* panel = nullptr;
 
 	// other
-	void* keyValuesSystem = nullptr;
+	inline void* keyValuesSystem = nullptr;
 }

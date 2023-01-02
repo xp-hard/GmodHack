@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../netvars.h"
-
 class ClientClass
 {
 public:

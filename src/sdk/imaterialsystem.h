@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#define MATERIAL_SYSTEM_INTERFACE_VERSION "VMaterialSystem080"
+
 class IMaterial;
 class IMesh;
 class IVertexBuffer;

@@ -7,10 +7,6 @@ namespace hooks {
 	void Setup();
 	void Destroy() noexcept;
 
-	constexpr void* VirtualFunction(void* thisptr, size_t index) noexcept {
-		return (*static_cast<void***>(thisptr))[index];
-	}
-
 	using EndScenceFn = long(__thiscall*)(void*, IDirect3DDevice9*) noexcept;
 	inline EndScenceFn EndScenceOriginal = nullptr;
 	long __stdcall EndScence(IDirect3DDevice9* device) noexcept;
@@ -29,7 +25,7 @@ namespace hooks {
 
 	using DrawModelFn = void(__thiscall*)(
 		void*,
-		void*,
+		DrawModelResults_t*,
 		const DrawModelInfo_t&,
 		CMatrix3x4*,
 		float*,
@@ -41,7 +37,7 @@ namespace hooks {
 	inline DrawModelFn DrawModelOriginal = nullptr;
 
 	void __stdcall DrawModel(
-		void* results,
+		DrawModelResults_t* results,
 		const DrawModelInfo_t& info,
 		CMatrix3x4* bones,
 		float* flexWeights,
