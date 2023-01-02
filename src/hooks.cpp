@@ -5,9 +5,9 @@
 #include "../../ext/imgui/imgui.h"
 #include "../../ext/imgui/backends/imgui_impl_dx9.h"
 #include "../../ext/imgui/backends/imgui_impl_win32.h"
-#include "sdk/globals.h"
 #include "../utl/memory.h"
 
+#include "sdk/globals.h"
 #include "features/features.h"
 
 void hooks::Setup() {
