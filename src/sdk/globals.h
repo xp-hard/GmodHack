@@ -3,8 +3,8 @@
 class CBaseEntity;
 
 namespace globals {
-	inline void Setup() noexcept;
-	inline void UpdateLocalPlayer() noexcept;
+	void Setup() noexcept;
+	void UpdateLocalPlayer() noexcept;
 
 	inline CBaseEntity* localPlayer = nullptr;
 }
