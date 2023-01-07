@@ -15,10 +15,12 @@ namespace memory
 		return (*static_cast<Function**>(vmt))[index](vmt, args...);
 	}
 
+#define VMT(interf) (*(void***)interf)
+
 	// get void pointer to virtual function @ given index
 	constexpr void* Get(void* vmt, const std::uint32_t index) noexcept
 	{
-		return (*static_cast<void***>(vmt))[index];
+		return VMT(vmt)[index];
 	}
 
 	inline std::uintptr_t RelativeToAbsolute(std::uintptr_t relAddr) noexcept {

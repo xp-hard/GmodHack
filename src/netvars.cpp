@@ -13,7 +13,7 @@ void Dump(const char* baseClass, RecvTable* table, intptr_t offset) {
 	for (int i = 0; i < table->m_nProps; ++i) {
 		const auto prop = &table->m_pProps[i];
 
-		if (!prop || isdigit(prop->m_pVarName[0])) {
+		if (!prop || !prop->m_pVarName || isdigit(prop->m_pVarName[0])) {
 			continue;
 		}
 

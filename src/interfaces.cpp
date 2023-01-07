@@ -8,7 +8,7 @@ void interfaces::Setup() noexcept
 	// capture the interfaces
 	interfaces::client = Capture<IBaseClientDll>("client.dll", CLIENT_DLL_INTERFACE_VERSION);
 	interfaces::entityList = Capture<IClientEntityList>("client.dll", VCLIENTENTITYLIST_INTERFACE_VERSION);
-	interfaces::clientMode = *(IClientModeShared**)((char*)(*(void***)(client))[10] + 0x5);
+	interfaces::clientMode = *(IClientModeShared**)((intptr_t)(*(void***)(client))[10] + 5);
 	/*void* engineTrace = Capture<IEngineTrace>("engine.dll", "EngineTraceClient003");
 	void* engineVGui = Capture<IEngineVGui>("engine.dll", "VEngineVGui001");*/
 	/*void* globals = **reinterpret_cast<IGlobalVars***>((*reinterpret_cast<uintptr_t**>(client))[11] + 10);
