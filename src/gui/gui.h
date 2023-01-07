@@ -3,7 +3,6 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include "../../ext/imgui/imgui.h"
-#include <string>
 
 namespace gui {
 	inline bool open = true;
