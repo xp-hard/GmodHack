@@ -34,26 +34,24 @@ void HackThread(HMODULE module) {
 
 	freopen_s(&file, "CONOUT$", "w", stdout);
 
+	std::cout << "Setting up ninterfaces\n";
 	interfaces::Setup();
+	std::cout << "Interfaces setted up!\n";
 
+	std::cout << "Setting up GUI\n";
 	gui::Setup();
+	std::cout << "GUI setted up!\n";
 	hooks::Setup();
+	std::cout << "Hooks setted up!\n";
 
 	SetupNetvars();
+	std::cout << "Netvars setted up!\n";
 
 	// Main loop
 	while (!GetAsyncKeyState(VK_END)) {
 
 		if (GetAsyncKeyState(VK_INSERT) & 1) {
 			gui::open = !gui::open;
-		}
-
-		for (int i = 0; i < interfaces::entityList->NumberOfEntities(true); ++i) {
-			CBaseEntity* ent = interfaces::entityList->GetClientEntity(i);
-
-			if (!ent) continue;
-
-			std::cout << i << " " << ent->m_iHealth() << "\n";
 		}
 
 		Sleep(300);

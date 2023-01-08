@@ -15,18 +15,20 @@ void memory::Setup() noexcept
     glowManager = PatternScan("client.dll", "0F 11 05 ? ? ? ? 83 C8 01") + 3;
 }
 
-std::uint8_t* memory::PatternScan(const char* moduleName, const char* pattern) noexcept
+std::uint8_t* memory::PatternScan(const char* module_name, const char* signature) noexcept
 {
-    static auto patternToByte = [](const char* pattern) noexcept -> const std::vector<std::int32_t>
-    {
-        std::vector<std::int32_t> bytes = std::vector<std::int32_t>{ };
-        char* start = const_cast<char*>(pattern);
-        const char* end = const_cast<char*>(pattern) + std::strlen(pattern);
+    const auto module_handle = GetModuleHandleA(module_name);
 
-        for (auto current = start; current < end; ++current)
-        {
-            if (*current == '?')
-            {
+    if (!module_handle)
+        return nullptr;
+
+    static auto pattern_to_byte = [](const char* pattern) {
+        auto bytes = std::vector<int>{};
+        auto start = const_cast<char*>(pattern);
+        auto end = const_cast<char*>(pattern) + std::strlen(pattern);
+
+        for (auto current = start; current < end; ++current) {
+            if (*current == '?') {
                 ++current;
 
                 if (*current == '?')
@@ -34,44 +36,35 @@ std::uint8_t* memory::PatternScan(const char* moduleName, const char* pattern) n
 
                 bytes.push_back(-1);
             }
-            else
+            else {
                 bytes.push_back(std::strtoul(current, &current, 16));
+            }
         }
-
         return bytes;
     };
 
-    const HINSTANCE handle = GetModuleHandle(moduleName);
+    auto dos_header = reinterpret_cast<PIMAGE_DOS_HEADER>(module_handle);
+    auto nt_headers =
+        reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<std::uint8_t*>(module_handle) + dos_header->e_lfanew);
 
-    if (!handle)
-        return nullptr;
+    auto size_of_image = nt_headers->OptionalHeader.SizeOfImage;
+    auto pattern_bytes = pattern_to_byte(signature);
+    auto scan_bytes = reinterpret_cast<std::uint8_t*>(module_handle);
 
-    const PIMAGE_DOS_HEADER dosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(handle);
-    const PIMAGE_NT_HEADERS ntHeaders =
-        reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<std::uint8_t*>(handle) + dosHeader->e_lfanew);
+    auto s = pattern_bytes.size();
+    auto d = pattern_bytes.data();
 
-    const std::uintptr_t size = ntHeaders->OptionalHeader.SizeOfImage;
-    const std::vector<std::int32_t> bytes = patternToByte(pattern);
-    std::uint8_t* scanBytes = reinterpret_cast<std::uint8_t*>(handle);
-
-    const std::size_t s = bytes.size();
-    const std::int32_t* d = bytes.data();
-
-    for (std::size_t i = 0ul; i < size - s; ++i)
-    {
+    for (auto i = 0ul; i < size_of_image - s; ++i) {
         bool found = true;
 
-        for (std::size_t j = 0ul; j < s; ++j)
-        {
-            if (scanBytes[i + j] != d[j] && d[j] != -1) 
-            {
+        for (auto j = 0ul; j < s; ++j) {
+            if (scan_bytes[i + j] != d[j] && d[j] != -1) {
                 found = false;
                 break;
             }
         }
-
         if (found)
-            return &scanBytes[i];
+            return &scan_bytes[i];
     }
 
     return nullptr;

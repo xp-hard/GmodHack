@@ -41,8 +41,8 @@ void hooks::Setup() {
 
 	if (MH_CreateHook(
 		memory::Get(interfaces::clientMode, 21),
-		&CreateMove,
-		reinterpret_cast<void**>(&CreateMoveOriginal)
+		&hooks::CreateMove,
+		reinterpret_cast<void**>(&hooks::CreateMoveOriginal)
 	)) {
 		throw std::runtime_error("Unable to hook CreateMove()");
 	}
@@ -85,10 +85,10 @@ HRESULT __stdcall hooks::Reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* 
 	return result;
 }
 
-bool hooks::CreateMove(float frameTime, CUserCmd* cmd) noexcept {
+bool __stdcall hooks::CreateMove(float frameTime, CUserCmd* cmd) noexcept {
 	const bool result = hooks::CreateMoveOriginal(interfaces::clientMode, frameTime, cmd);
 
-	if (!cmd || !cmd->commandNumber) {
+	if (!cmd || !cmd->command_number) {
 		return result;
 	}
 

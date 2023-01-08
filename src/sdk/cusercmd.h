@@ -4,7 +4,7 @@
 class CUserCmd
 {
 public:
-    enum ECommandButton : std::int32_t
+    enum ECommandButton : std::uint32_t
     {
         IN_ATTACK = (1 << 0),
         IN_JUMP = (1 << 1),
@@ -34,22 +34,29 @@ public:
         IN_MIDDLE_ATTACK = (1 << 25)
     };
 
-    void* vmt;
-    std::int32_t commandNumber;
-    std::int32_t tickCount;
-    CVector viewAngles;
-    CVector aimDirection;
-    float forwardMove;
-    float sideMove;
-    float upMove;
-    std::int32_t buttons;
-    char impulse;
-    std::int32_t weaponSelect;
-    std::int32_t weaponSubType;
-    std::int32_t randomSeed;
-    short mouseDeltaX;
-    short mouseDeltaY;
-    bool hasBeenPredicted;
-    CVector headAngles;
-    CVector headOffset;
+    int		command_number;
+    // the tick the client created this command
+    int		tick_count;
+    // Player instantaneous view angles.
+    QAngle	viewangles;
+    // Intended velocities
+    //	forward velocity.
+    float	forwardmove;
+    //  sideways velocity.
+    float	sidemove;
+    //  upward velocity.
+    float	upmove;
+    // Attack button states
+    int		buttons;
+    // Impulse command issued.
+    unsigned char    impulse;
+    // Current weapon id
+    int		weaponselect;
+    int		weaponsubtype;
+    int		random_seed;
+    short	mousedx;		// mouse accum in x from create move
+    short	mousedy;		// mouse accum in y from create move
+
+    // Client only, tracks whether we've predicted this command at least once
+    bool	hasbeenpredicted;
 };

@@ -2,13 +2,20 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <stdexcept>
 
 void interfaces::Setup() noexcept
 {
 	// capture the interfaces
 	interfaces::client = Capture<IBaseClientDll>("client.dll", CLIENT_DLL_INTERFACE_VERSION);
 	interfaces::entityList = Capture<IClientEntityList>("client.dll", VCLIENTENTITYLIST_INTERFACE_VERSION);
-	interfaces::clientMode = *(IClientModeShared**)((intptr_t)(*(void***)(client))[10] + 5);
+	do {
+		auto address = (uintptr_t)memory::PatternScan("client.dll", "48 8B 0D ? ? ? ? 48 8B 01 48 FF 60 50 CC CC 48 83 EC 28");
+		auto address_of_next = address + 7;
+		auto relative = *(int*)(address + 3);
+		auto absolute = address_of_next + relative;
+		interfaces::clientMode = *(IClientModeShared**)(absolute);
+	} while (!clientMode);
 	/*void* engineTrace = Capture<IEngineTrace>("engine.dll", "EngineTraceClient003");
 	void* engineVGui = Capture<IEngineVGui>("engine.dll", "VEngineVGui001");*/
 	/*void* globals = **reinterpret_cast<IGlobalVars***>((*reinterpret_cast<uintptr_t**>(client))[11] + 10);

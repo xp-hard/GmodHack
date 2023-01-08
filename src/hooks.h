@@ -19,7 +19,7 @@ namespace hooks {
 	inline AllocateVirtualMemoryFn AllocKeyValuesMemoryOriginal;
 	void* __stdcall AllocKeyValuesMemory(const int32_t size) noexcept;
 
-	using CreateMoveFn = bool(__thiscall*)(IClientModeShared*, float, CUserCmd*) noexcept;
+	using CreateMoveFn = bool(__thiscall*)(IClientModeShared*, float, CUserCmd* cmd) noexcept;
 	inline CreateMoveFn CreateMoveOriginal = nullptr;
 	bool __stdcall CreateMove(float frameTime, CUserCmd* cmd) noexcept;
 
