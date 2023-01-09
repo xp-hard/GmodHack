@@ -85,19 +85,14 @@ HRESULT __stdcall hooks::Reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* 
 	return result;
 }
 
-bool __stdcall hooks::CreateMove(float frameTime, CUserCmd* cmd) {
+bool __fastcall hooks::CreateMove(IClientModeShared* self, float frameTime, CUserCmd* cmd) {
+	const bool result = hooks::CreateMoveOriginal(interfaces::clientMode, frameTime, cmd);
 
 	if (!cmd || !cmd->command_number) {
-		const bool result = hooks::CreateMoveOriginal(interfaces::clientMode, frameTime, cmd);
 		return result;
 	}
 
-	globals::UpdateLocalPlayer();
+	features::misc::RunBunnyHop();
 
-	if (globals::localPlayer && globals::localPlayer->IsAlive()) {
-		features::RunBunnyHop(cmd);
-	}
-
-	const bool result = hooks::CreateMoveOriginal(interfaces::clientMode, frameTime, cmd);
 	return result;
 }

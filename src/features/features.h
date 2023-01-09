@@ -3,5 +3,7 @@
 #include "../interfaces.h"
 
 namespace features {
-	void RunBunnyHop(CUserCmd* cmd);
+	namespace misc {
+		void RunBunnyHop(CUserCmd* cmd);
+	}
 };

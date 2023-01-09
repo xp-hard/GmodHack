@@ -21,7 +21,7 @@ namespace hooks {
 
 	using CreateMoveFn = bool(__thiscall*)(IClientModeShared*, float, CUserCmd* cmd);
 	inline CreateMoveFn CreateMoveOriginal = nullptr;
-	bool __stdcall CreateMove(float frameTime, CUserCmd* cmd);
+	bool __fastcall CreateMove(IClientModeShared* self, float frameTime, CUserCmd* cmd);
 
 	using DrawModelFn = void(__thiscall*)(
 		void*,

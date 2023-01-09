@@ -6,13 +6,15 @@
 
 static int jump_cnt = 0;
 
-void features::RunBunnyHop(CUserCmd* cmd) {
+void features::misc::RunBunnyHop(CUserCmd* cmd) {
 	if (!toggles::bhop) {
 		return;
 	}
 
-	if (cmd->buttons & CUserCmd::IN_JUMP) {
-		std::cout << "In Jump! " << jump_cnt++ << "\n";
+	globals::UpdateLocalPlayer();
+
+	if (!globals::localPlayer || !globals::localPlayer->IsAlive()) {
+		return;
 	}
 
 	if (cmd->buttons & CUserCmd::IN_JUMP) {
