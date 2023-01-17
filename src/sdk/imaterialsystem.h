@@ -4,6 +4,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include "cvector.h"
 
 #define MATERIAL_SYSTEM_INTERFACE_VERSION "VMaterialSystem080"
 
@@ -25,16 +26,12 @@ class ICallQueue;
 struct MorphWeight_t;
 class IFileList;
 class Vector4D {};
+class Quaternion {};
 
 class IMaterialProxyFactory;
 class ITexture;
 class IMaterialSystemHardwareConfig;
 class CShadowMgr;
-
-class Quaternion {};
-
-
-class Vector {};
 
 typedef uint64_t VertexFormat_t;
 

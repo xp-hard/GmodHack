@@ -2,6 +2,7 @@
 
 #include "imaterial.h"
 #include "iclientrenderable.h"
+#include "cvector.h"
 
 #define STUDIO_RENDER_INTERFACE_VERSION "VStudioRender025"
 
@@ -9,7 +10,6 @@
 
 struct studiohdr_t;
 struct studiomeshdata_t;
-class Vector;
 //struct LightDesc_t;
 class IMaterial;
 struct studiohwdata_t;

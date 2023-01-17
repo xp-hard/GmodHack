@@ -128,3 +128,4 @@ private:
 };
 
 typedef CVector Vector;
+typedef Vector AngularImpulse;

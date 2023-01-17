@@ -1,6 +1,6 @@
 #pragma once
 
-class CBaseEntity;
+class CBasePlayer;
 
 namespace globals {
 	void Setup() noexcept;

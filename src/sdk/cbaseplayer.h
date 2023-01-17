@@ -1,8 +1,9 @@
 #pragma once
 
+#include "cvector.h"
 #include "cbaseentity.h"
 #include "cbasecombatcharacter.h"
-#include "cgameeventlistener"
+#include "cgameeventlistener.h"
 
 class C_BaseCombatWeapon;
 class C_BaseViewModel;

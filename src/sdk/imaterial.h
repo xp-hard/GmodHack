@@ -1,13 +1,13 @@
 #pragma once
 
 #include "imaterialsystem.h"
+#include "cvector.h"
 
 typedef uint64_t uint64;
 
 class IMaterialVar;
 class ITexture;
 class IMaterialProxy;
-class Vector;
 
 //-----------------------------------------------------------------------------
 // Flags for GetVertexFormat

@@ -220,6 +220,7 @@
     <ClInclude Include="src\sdk\iclientthinkable.h" />
     <ClInclude Include="src\sdk\iclientunknown.h" />
     <ClInclude Include="src\sdk\igameevents.h" />
+    <ClInclude Include="src\sdk\igamesystem.h" />
     <ClInclude Include="src\sdk\ihandleentity.h" />
     <ClInclude Include="src\sdk\imaterial.h" />
     <ClInclude Include="src\sdk\imaterialsystem.h" />

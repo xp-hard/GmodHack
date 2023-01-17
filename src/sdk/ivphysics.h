@@ -1134,6 +1134,3 @@ DEFINE_PIID(IPhysicsMotionController, PIID_IPHYSICSMOTIONCONTROLLER);
 DEFINE_PIID(IPhysicsVehicleController, PIID_IPHYSICSVEHICLECONTROLLER);
 DEFINE_PIID(IPhysicsGameTrace, PIID_IPHYSICSGAMETRACE);
 
-//-----------------------------------------------------------------------------
-
-#endif // VPHYSICS_INTERFACE_H

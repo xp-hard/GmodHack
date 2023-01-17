@@ -305,5 +305,8 @@
     <ClInclude Include="src\sdk\ivphysics.h">
       <Filter>sdk</Filter>
     </ClInclude>
+    <ClInclude Include="src\sdk\igamesystem.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,9 @@
 #include "cbaseanimating.h"
 #include "cbaseanimatingoverlay.h"
 #include "cvector.h"
+#include "igamesystem.h"
+
+struct flexsettinghdr_t;
 
 class CFlexSceneFile
 {
@@ -37,6 +40,11 @@ public:
 };
 
 struct Emphasized_Phoneme;
+
+class CSceneEventInfo;
+class CChoreoScene;
+class CChoreoEvent;
+class CChoreoActor;
 
 class C_BaseFlex : public C_BaseAnimatingOverlay, public IHasLocalToGlobalFlexSettings
 {
