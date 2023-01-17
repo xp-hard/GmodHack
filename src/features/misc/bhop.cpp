@@ -1,19 +1,21 @@
-#include "../sdk/globals.h"
-#include "toggles.h"
-#include "../sdk/const.h"
-#include "features.h"
+#include "../../sdk/globals.h"
+#include "../toggles.h"
+#include "../../sdk/const.h"
+#include "../features.h"
 #include <iostream>
 
 static int jump_cnt = 0;
 
 void features::misc::RunBunnyHop(CUserCmd* cmd) {
-	if (!toggles::bhop) {
+	if (!(*toggles::misc::bhop)) {
 		return;
 	}
 
 	globals::UpdateLocalPlayer();
 
-	if (!globals::localPlayer || !globals::localPlayer->IsAlive()) {
+	
+
+	if (!globals::localPlayer || !globals::localPlayer->IsAlive() || globals::localPlayer->GetMoveType() == MOVETYPE_LADDER) {
 		return;
 	}
 

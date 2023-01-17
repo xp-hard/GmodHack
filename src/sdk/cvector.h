@@ -126,3 +126,5 @@ private:
 
 #endif
 };
+
+typedef CVector Vector;

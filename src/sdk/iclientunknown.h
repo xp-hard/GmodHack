@@ -1,16 +1,9 @@
 #pragma once
 
 #include "ihandleentity.h"
-#include "../../utl/memory.h"
 
 class IClientNetworkable;
-class C_BaseEntity : public IClientEntity {
-public: // Functions
-	constexpr bool IsPlayer() noexcept
-	{
-		return memory::Call<bool>(this, 158);
-	}
-};
+class C_BaseEntity;
 class IClientRenderable;
 class ICollideable;
 class IClientEntity;

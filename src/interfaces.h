@@ -18,6 +18,8 @@
 #include "sdk/iclientrenderable.h"
 #include "sdk/ihandleentity.h"
 #include "sdk/ivengineclient.h"
+#include "sdk/lua/ILua.h"
+#include "sdk/cbaseplayer.h"
 
 namespace interfaces
 {
@@ -43,6 +45,8 @@ namespace interfaces
 	inline IVEngineClient* engine = nullptr;
 	//IVModelInfo* modelInfo = nullptr;
 	//IVPanel* panel = nullptr;
+
+	inline LUA::Shared* lua_shared = nullptr;
 
 	// other
 	inline void* keyValuesSystem = nullptr;

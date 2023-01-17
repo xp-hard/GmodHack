@@ -6,5 +6,5 @@ namespace globals {
 	void Setup() noexcept;
 	void UpdateLocalPlayer() noexcept;
 
-	inline CBaseEntity* localPlayer = nullptr;
+	inline CBasePlayer* localPlayer = nullptr;
 }

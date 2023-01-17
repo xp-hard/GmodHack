@@ -92,7 +92,7 @@ bool __fastcall hooks::CreateMove(IClientModeShared* self, float frameTime, CUse
 		return result;
 	}
 
-	features::misc::RunBunnyHop();
+	features::misc::RunBunnyHop(cmd);
 
 	return result;
 }

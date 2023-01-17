@@ -36,7 +36,8 @@ namespace hooks {
 
 	inline DrawModelFn DrawModelOriginal = nullptr;
 
-	void __stdcall DrawModel(
+	void __fastcall DrawModel(
+		IStudioRender* self,
 		DrawModelResults_t* results,
 		const DrawModelInfo_t& info,
 		CMatrix3x4* bones,

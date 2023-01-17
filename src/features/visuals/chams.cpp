@@ -1,9 +1,10 @@
-#include "toggles.h"
-#include "../sdk/globals.h"
-#include "../hooks.h"
-#include "colors.h"
+#include "../toggles.h"
+#include "../../sdk/globals.h"
+#include "../../hooks.h"
+#include "../colors.h"
 
-void __stdcall hooks::DrawModel(
+void __fastcall hooks::DrawModel(
+	IStudioRender* self,
 	DrawModelResults_t* results,
 	const DrawModelInfo_t& info,
 	CMatrix3x4* bones,
@@ -12,7 +13,7 @@ void __stdcall hooks::DrawModel(
 	const CVector& modelOrigin,
 	const int32_t flags
 ) noexcept {
-	if (toggles::chams && globals::localPlayer && info.m_pClientEntity) {
+	if (toggles::visuals::chams && globals::localPlayer && info.m_pClientEntity) {
 		C_BaseEntity* entity = info.m_pClientEntity->GetIClientUnknown()->GetBaseEntity();
 
 		if (entity && entity->IsPlayer()) {

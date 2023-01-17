@@ -37,6 +37,18 @@
     <Filter Include="utl">
       <UniqueIdentifier>{5fa773ff-4a6d-4564-a51f-f29dc571b3a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="features\misc">
+      <UniqueIdentifier>{f00dbe00-6daa-4b8f-96ae-4f7c8988234c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="features\visuals">
+      <UniqueIdentifier>{54040d93-2d28-472b-87c9-04788936046c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\tabs">
+      <UniqueIdentifier>{87c0f8de-1ee1-41ed-b2ab-1231227ca719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\lua">
+      <UniqueIdentifier>{189d6199-af0e-4864-940e-3f2f7d648af2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -93,14 +105,17 @@
     <ClCompile Include="utl\memory.cpp">
       <Filter>utl</Filter>
     </ClCompile>
-    <ClCompile Include="src\features\chams.cpp">
-      <Filter>features</Filter>
-    </ClCompile>
-    <ClCompile Include="src\features\bhop.cpp">
-      <Filter>features</Filter>
-    </ClCompile>
     <ClCompile Include="src\sdk\globals.cpp">
       <Filter>sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\misc\bhop.cpp">
+      <Filter>features\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\visuals\chams.cpp">
+      <Filter>features\visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\menu.cpp">
+      <Filter>gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +185,6 @@
     <ClInclude Include="src\gui\gui.h">
       <Filter>gui</Filter>
     </ClInclude>
-    <ClInclude Include="src\gui\menu.h">
-      <Filter>gui</Filter>
-    </ClInclude>
     <ClInclude Include="src\features\toggles.h">
       <Filter>features</Filter>
     </ClInclude>
@@ -206,15 +218,6 @@
     <ClInclude Include="src\sdk\ibaseclientdll.h">
       <Filter>sdk</Filter>
     </ClInclude>
-    <ClInclude Include="src\sdk\iclientrenderable.h">
-      <Filter>sdk</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdk\iclientunknown.h">
-      <Filter>sdk</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdk\ihandleentity.h">
-      <Filter>sdk</Filter>
-    </ClInclude>
     <ClInclude Include="src\sdk\ivengineclient.h">
       <Filter>sdk</Filter>
     </ClInclude>
@@ -234,6 +237,72 @@
       <Filter>sdk</Filter>
     </ClInclude>
     <ClInclude Include="src\sdk\const.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\tabs\aimbot.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\tabs\visuals.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\tabs\misc.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\tabs\include_tabs.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\tabs\settings.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\tabs\includes.h">
+      <Filter>gui\tabs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\lua\ILua.h">
+      <Filter>sdk\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cbaseplayer.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cbasecombatcharacter.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cbaseflex.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cbaseanimatingoverlay.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cbaseanimating.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\imodelloadcallback.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\cgameeventlistener.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\igameevents.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\iclientunknown.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\ihandleentity.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\iclientrenderable.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\iclientnetworkable.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\iclientthinkable.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\ivmodelrender.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\ivphysics.h">
       <Filter>sdk</Filter>
     </ClInclude>
   </ItemGroup>

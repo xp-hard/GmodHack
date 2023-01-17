@@ -9,7 +9,6 @@ public: // enums
 	
 public: // netvars
 	NETVAR(m_iHealth, "CBaseEntity->m_iHealth", int32_t);
-	NETVAR(m_fFlags, "CBasePlayer->m_fFlags", int32_t);
 	NETVAR(m_lifeState, "CBasePlayer->m_lifeState", char);
 
 public: // Functions
@@ -17,3 +16,5 @@ public: // Functions
 		return m_lifeState() == LIFE_ALIVE;
 	}
 };
+
+typedef CBaseEntity C_BaseEntity;

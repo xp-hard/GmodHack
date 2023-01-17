@@ -7,5 +7,5 @@ void globals::Setup() noexcept {
 
 void globals::UpdateLocalPlayer() noexcept {
 	auto localPlayerIndex = interfaces::engine->GetLocalPlayer();
-	globals::localPlayer = interfaces::entityList->GetClientEntity(localPlayerIndex);
+	globals::localPlayer = (CBasePlayer*)interfaces::entityList->GetClientEntity(localPlayerIndex);
 }

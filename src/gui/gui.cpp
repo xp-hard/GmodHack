@@ -236,45 +236,6 @@ void gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 	setup = true;
 }
 
-void gui::Render() noexcept {
-	ImGui_ImplDX9_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-
-	ImGui::Begin("Menu", &open,
-		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoTitleBar
-	);
-
-
-	if (ImGui::BeginTabBar("Menu groups", ImGuiTabBarFlags_NoTooltip)) {
-		if (ImGui::BeginTabItem("Visuals")) {
-			
-			ImGui::Checkbox("Chams", &toggles::chams);
-
-			ImGui::EndTabItem();
-		}
-		if (ImGui::BeginTabItem("Aimbot")) {
-
-			ImGui::EndTabItem();
-		}
-		if (ImGui::BeginTabItem("Misc")) {
-			ImGui::Checkbox("Bunny hop", &toggles::bhop);
-
-			ImGui::EndTabItem();
-		}
-		ImGui::EndTabBar();
-	}
-
-	ImGui::End();
-
-
-	ImGui::EndFrame();
-	ImGui::Render();
-	ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
-}
-
-
 void gui::Destroy() noexcept {
 	ImGui_ImplWin32_Shutdown();
 	ImGui_ImplDX9_Shutdown();

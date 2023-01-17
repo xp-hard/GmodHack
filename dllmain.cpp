@@ -4,6 +4,7 @@
 #include "src/interfaces.h"
 #include "src/hooks.h"
 #include <iostream>
+#include "src/features/toggles.h"
 
 // Get pointer to the interface
 template<class T>

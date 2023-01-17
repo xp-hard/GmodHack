@@ -27,6 +27,7 @@ void interfaces::Setup() noexcept
 	interfaces::engine = Capture<IVEngineClient>("engine.dll", VENGINE_CLIENT_INTERFACE_VERSION);
 	//void* modelInfo = Capture<IVModelInfo>("engine.dll", "VModelInfoClient006");
 	//void* panel = Capture<IVPanel>("vgui2.dll", "VGUI_Panel009");*/
+	interfaces::lua_shared = Capture<LUA::Shared>("lua_shared.dll", "LUASHARED003");
 
 	// get the exported KeyValuesSystem function
 	if (const HINSTANCE handle = GetModuleHandle("vstdlib.dll"))
